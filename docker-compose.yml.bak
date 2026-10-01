@@ -1,0 +1,24 @@
+version: '3.8'
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"   # The port your code will use to send messages
+      - "15672:15672" # The port for the RabbitMQ visual dashboard
+    environment:
+      RABBITMQ_DEFAULT_USER: cortex_admin
+      RABBITMQ_DEFAULT_PASS: cortex_secret
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  postgres:
+    image: postgres:15-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: cortex_db_admin
+      POSTGRES_PASSWORD: supersecurepassword
+      POSTGRES_DB: streamcortex

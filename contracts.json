@@ -1,0 +1,9 @@
+{
+  "VideoWatchEvent": {
+    "userId": "string (UUID)",
+    "videoId": "string (UUID)",
+    "timestamp": "ISO 8601 Date String",
+    "action": "enum: ['PLAY', 'PAUSE', 'BUFFER', 'COMPLETE']",
+    "playbackPositionSeconds": "integer"
+  }
+}
